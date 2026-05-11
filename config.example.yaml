@@ -1,0 +1,69 @@
+# ApiForge 配置示例
+# ApiForge Configuration Example
+
+version: '1.0.0'
+
+# 服务器配置
+server:
+  port: 8080
+  host: 0.0.0.0
+  debug: false
+
+# API Provider 配置
+providers:
+  # OpenAI Provider
+  - name: openai-default
+    api_type: openai
+    api_key: sk-your-openai-api-key
+    base_url: https://api.openai.com/v1
+    model: gpt-4o-mini
+    max_rpm: 60
+    max_tpm: 90000
+    weight: 1
+    enabled: true
+    priority: 1
+
+  # Anthropic Provider (Claude)
+  - name: anthropic-default
+    api_type: anthropic
+    api_key: sk-ant-your-anthropic-api-key
+    base_url: https://api.anthropic.com
+    model: claude-3-5-haiku-20241022
+    max_rpm: 50
+    max_tpm: 40000
+    weight: 1
+    enabled: false
+    priority: 2
+
+  # Ollama (Local)
+  - name: ollama-local
+    api_type: ollama
+    api_key: ''
+    base_url: http://localhost:11434
+    model: llama3.2
+    max_rpm: 100
+    max_tpm: 100000
+    weight: 2
+    enabled: false
+    priority: 1
+
+# 负载均衡配置
+load_balancer:
+  strategy: round_robin  # round_robin | weighted | least_connections | random | priority
+  health_check_interval: 30
+  failure_threshold: 3
+  recovery_timeout: 60
+
+# 安全配置
+safety:
+  enable_rate_limiting: true
+  enable_budget_control: true
+  daily_budget_usd: 100.0
+  monthly_budget_usd: 1000.0
+  max_tokens_per_request: 4096
+  enable_content_filter: true
+
+# 高级选项
+enable_cors: true
+enable_metrics: true
+log_requests: true
