@@ -1,0 +1,25 @@
+# ApiForge Dependencies
+# Zero external dependencies for core functionality
+# Optional dependencies for HTTP server
+
+# Core - Minimal dependencies
+PyYAML>=6.0
+aiohttp>=3.9.0
+
+# Development & Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
+
+# Optional: FastAPI server (alternative to built-in aiohttp)
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+
+# Optional: Redis caching
+redis>=5.0.0
+
+# Optional: Prometheus metrics
+prometheus-client>=0.19.0
+
+# Optional: Web dashboard
+streamlit>=1.28.0
